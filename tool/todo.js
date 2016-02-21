@@ -19,15 +19,32 @@ data = data || {};
 			deleteDiv: "delete-div"
 		},
 	  codes = {
-	  	"1" : "#pending",
-	  	"2" : "#inProgress",
-	  	"3" : "#completed"
+	  	"1" : "#draft",
+	  	"2" : "#todo",
+	  	"3" : "#inProgress",
+	  	"4" : "#completed",
+	  	"5" : "#canceled",
+	  	"6" : "#closed"
 	  },
 	  prios = {
 	  	"1": 'Minor',
 	  	"10": "Major",
 	  	"20": "Blocker",
 	  	"30": "Critical"
+	  },
+	  status = {
+	  	"1": 'Unpack',
+	  	"10": "Taking picture",
+	  	"20": "Machine"
+	  },
+	  categries = {
+	  	"1": 'Table',
+	  	"10": "Chair",
+	  	"20": "Others"
+	  },
+	  result = {
+	  	"10": 'FAILED',
+	  	"1": "PASSED"
 	  };
 
 	todo.init = function (options) {
@@ -150,6 +167,14 @@ data = data || {};
 			"text" : params.assignee
 		}).appendTo(wrapper);
 
+		$("<div />", { "class" : "", "text" : params.receivedAt }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : params.status }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : 0 }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : params.category }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : params.coordinatorInformation }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : params.result }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : params.resultInformation }).appendTo(wrapper);
+
 		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a>').appendTo(wrapper);
 	};
 
@@ -191,9 +216,17 @@ data = data || {};
         form.find('#tDescription').val(params.description);
         form.find('#tAssignee').val(params.assignee);
         form.find('#tPriority').val(params.priority);
-        form.find('#datepicker').val(params.date);
+        form.find('#tDate').val(params.date);
         form.find('#tId').val(params.id);
         form.find('#tCode').val(params.code);
+
+        form.find('#tReceivedAt').val(params.receivedAt);
+        form.find('#tStatus').val(params.status);
+        form.find('#tCategory').val(params.category);
+        form.find('#tCoordinatorInformation').val(params.coordinatorInformation);
+        form.find('#tResult').val(params.result);
+        form.find('#tResultInformation').val(params.resultInformation);
+
         return false;
 	};
 
