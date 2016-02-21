@@ -1,0 +1,167 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.js"></script>
+  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.0.0/jquery.serialize-object.compiled.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> 
+  <script type="text/javascript" src="app.js"></script>
+  <script src="todo.js"></script> 
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        $("#datepicker").datepicker();
+        $("#datepicker").datepicker("option", "dateFormat", "dd/mm/yy");
+    });
+  </script>
+  <style type="text/css">
+    form {
+        display: none;
+    }
+  </style>
+<title> by firebase</title>
+</head>
+<body>
+  <header class="navbar navbar-static-top navbar-inverse" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"> <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+
+           </button> <a href="#" class="navbar-brand">Firebase login</a>
+
+       </div>
+       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+            <li> <a href="#/">Login</a></li>
+            <li> <a href="#/logout">Logout</a></li>
+            <li> <a href="#/register">Register</a></li>
+            <li> <a href="#/profile">Profile</a></li>
+            <li> <a href="#/task">Tasks</a></li>
+        </ul>
+    </nav>
+</div>
+</header>
+<div id="container" class="container">
+    <!-- LOGIN -->
+    <form id="frmLogin" role="form" style="display: block;">
+       <h2>Login</h2>
+
+       <div class="form-group">
+        <label for="txtEmail">Email address</label>
+        <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+        <label for="txtPass">Password</label>
+        <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password">
+    </div>
+    <button type="submit" class="btn btn-default btn-block">Login</button>
+</form>
+<!-- / LOGIN -->
+<!-- LOGOUT -->
+<form id="frmLogout" role="form" style="display: none;">
+   <h2>You are logged out!</h2>
+
+</form>
+<!-- / LOGOUT -->
+<!-- REGISTER -->
+<form id="frmRegister" role="form" style="display: none;">
+   <h2>Register</h2>
+
+   <div class="form-group">
+    <label for="txtRegEmail">Email address</label>
+    <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email">
+</div>
+<div class="form-group">
+    <label for="txtRegPass">Password</label>
+    <input type="password" class="form-control" id="txtPass" placeholder="Password" name="password">
+</div>
+<button type="submit" class="btn btn-default">Register</button>
+</form>
+<!-- / REGISTER -->
+<!-- PROFILE -->
+<form id="frmProfile" role="form">
+   <h2>Profile</h2>
+
+   <br>
+   <div class="form-group">
+    <label for="txtName">Name</label>
+    <input type="text" class="form-control" id="txtName" placeholder="Name" name="name">
+</div>
+<div class="form-group">
+    <label for="ddlDino">Favorite Dinosaur</label>
+    <select id="ddlDino" name="favoriteDinosaur" class="form-control">
+        <option>None</option>
+        <option>Pteranodon</option>
+        <option>Lambeosaurus</option>
+        <option>Stegosaurus</option>
+        <option>Daspletosaurus</option>
+    </select>
+</div>
+<button type="submit" class="btn btn-primary">Update</button>
+</form>
+<!-- / PROFILE -->
+
+<!-- PROFILE -->
+<form id="todo-form" role="form">
+    <h2>Task</h2>
+    <br>
+    <span></span>
+    <div class="container">
+        <div class="task-list" id="pending">
+          <h3>Pending</h3>
+        </div>
+        <div class="task-list" id="inProgress">
+          <h3>In Progress</h3>
+        </div>
+        <div class="task-list" id="completed">
+          <h3>Completed</h3>
+        </div>
+        <div class="task-list">
+          <h3>Add a task</h3>
+          
+          <input name="data[title]" id="tTitle" type="text" placeholder="Title" />
+          <textarea name="data[description]" id="tDescription" placeholder="Description"></textarea>
+          <select name="data[priority]" id="tPriority" placeholder="Priority">
+            <option value="">--Select Priority--</option>
+            <option value="1">Minor</option>
+            <option value="10">Major</option>
+            <option value="20">Blocker</option>
+            <option value="30">Critical</option>
+          </select>
+          <select id="tAssignee" name="data[assignee]" placeholder="Assignee">
+            <option value="">--Select Assignee--</option>
+
+          </select>
+          <input type="text" id="datepicker" name="data[date]" placeholder="Due Date (dd/mm/yy)" />
+          <input type="hidden" id="tId" name="data[id]" value="0" />
+          <input type="hidden" id="tCode" name="data[code]" value="1" />
+          <input type="button" class="btn btn-primary" value="Add/Update task" onclick="todo.add();" />
+          
+          <input type="button" class="btn btn-primary" value="Clear all" onclick="todo.clear();"/>
+          <ul id="contacts" class="list-group">
+          <!-- Conatct Object li.list-group-item.contact will be added here by js -->
+        </ul>
+          <div id="delete-div">Drag Here to Delete</div>
+        </div>
+    </div>
+</form>
+<!-- / PROFILE -->
+
+<hr>
+<!-- ALERT BOX -->
+<div id="alert" class="alert alert-info" role="alert">
+   <h4 id="alert-title">You are not logged in</h4>
+
+   <p id="alert-detail"></p>
+</div>
+<!-- / ALERT BOX -->
+</div>
+</body></html>
