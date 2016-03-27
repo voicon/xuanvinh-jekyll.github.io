@@ -118,16 +118,17 @@ data = data || {};
             data[snap.val().id] = params;
             generateElement(params);
         });
-        $('a.ticket-more-btn').click(function() {
-            if($(this).prev().prev().css('display') == 'none' ) {
-                $(this).prev().prev().show();
-                $(this).text('<< hide info');
-            } else {
-                $(this).prev().prev().hide();
-                $(this).text('>> show info');
-            }
-        });
 	}
+
+    function showHide() {
+        if($(this).prev().prev().css('display') == 'none' ) {
+            $(this).prev().prev().show();
+            $(this).text('<< hide info');
+        } else {
+            $(this).prev().prev().hide();
+            $(this).text('>> show info');
+        }
+    };
 
 	//Add Task
 	var generateElement = function(params) {
@@ -167,7 +168,7 @@ data = data || {};
 
         wrapperDescription = $("<div />", { "class" : defaults.todoDescription, "html" : '<label>Description</label>: ' + params.description }).appendTo(moreInfo);
 		$("<div />", {"class" : defaults.todoPriority + ' ' + defaults.todoPriority + '-' + params.priority,
-            "text" : '<label>Priority</label>: ' + prios[params.priority] }).appendTo(moreInfo);
+            "html" : '<label>Priority</label>: ' + prios[params.priority] }).appendTo(moreInfo);
 		$("<div />", { "class" : "", "html" : '<label>Status</label>: ' + status[params.status] }).appendTo(moreInfo);
 		//$("<div />", { "class" : "", "text" : 0 }).appendTo(wrapper);
 		$("<div />", { "class" : "", "html" : '<label>Category</label>: ' + categries[params.category] }).appendTo(moreInfo);
@@ -175,7 +176,7 @@ data = data || {};
 		$("<div />", { "class" : "", "html" : '<label>Result</label>: '+result[params.result] }).appendTo(moreInfo);
 		$("<div />", { "class" : "", "html" : '<label>Result Info</label>: ' + params.resultInformation }).appendTo(moreInfo);
 
-		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);">&gt;&gt; show info</a>').appendTo(wrapper);
+		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);" onclick="showHide()">&gt;&gt; show info</a>').appendTo(wrapper);
 	};
 
 	// Deleting Tasks
