@@ -164,6 +164,7 @@ data = data || {};
 
 	// Form
 	todo.add = function() {
+        $('tAssigneeHidden').val($('tAssignee').val().join(','));
 		var errorMessage = "Title can not be empty",
 				formData = $("#todo-form").serializeObject(),
 				id = formData.data.id;
@@ -193,7 +194,7 @@ data = data || {};
 		form[0].reset()
 		form.find('#tTitle').val(params.title);
         form.find('#tDescription').val(params.description);
-        form.find('#tAssignee').val(params.assignee);
+        form.find('#tAssignee').val(params.assignee.split(','));
         form.find('#tPriority').val(params.priority);
         form.find('#tDate').val(params.date);
         form.find('#tId').val(params.id);

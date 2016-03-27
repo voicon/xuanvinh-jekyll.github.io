@@ -164,14 +164,15 @@
             <option value="10">FAILED</option>
           </select>
           <textarea class="form-control" rows="3" name="data[resultInformation]" id="tResultInformation" placeholder="Result information"></textarea>
-          <select id="tAssignee" name="data[assignee]" class="form-control" multiple placeholder="Assignee">
+          <select id="tAssignee" class="form-control" multiple placeholder="Assignee">
             <option value="">--Select Assignee--</option>
           </select>
           <input class="form-control" type="text" class="datepicker" id="receivedAt" name="data[receivedAt]" placeholder="Receive Date (dd/mm/yy)" />
           <input class="form-control" type="text" class="datepicker" id="date" name="data[date]" placeholder="Due Date (dd/mm/yy)" />
 
           <input type="hidden" id="tId" name="data[id]" value="0" />
-          <input type="hidden" id="tCode" name="data[code]" value="1" />
+          <input type="hidden" id="tAssigneeHidden" name="data[assignee]" value="1" />
+            <input type="hidden" id="tCode" name="data[code]" value="1" />
           <input type="button" class="btn btn-primary" value="Add/Update task" onclick="todo.add();" />
           
           <input type="button" class="btn btn-warning" value="Clear all" onclick="todo.clear();"/>
