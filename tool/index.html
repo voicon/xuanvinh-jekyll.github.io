@@ -19,7 +19,7 @@
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");
         });
-        $('.ticket-more-btn').click(function() {
+        $('.ticket-more-btn').on( "click", function() {
            if($(this).prev().prev().css('display') == 'none' ) {
                $(this).prev().prev().show();
            } else {

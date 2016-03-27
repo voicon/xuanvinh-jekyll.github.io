@@ -150,7 +150,7 @@ data = data || {};
 
 
 		wrapperTitle = $("<div />", { "class" : defaults.todoHeader, "html" : params.title }).appendTo(wrapper);
-        $("<div />", { "class" : "", "text" : '<label>Received At</label>: ' + params.receivedAt }).appendTo(wrapper);
+        $("<div />", { "class" : "", "html" : '<label>Received At</label>: ' + params.receivedAt }).appendTo(wrapper);
         wrapperDate = $("<div />", { "class" : defaults.todoDate, "html" : '<label>Due date</label>: ' + params.date}).appendTo(wrapper);
         $("<div />", {"class" : defaults.todoAssignee, "html" : '<label>PIC</label>: ' + params.assignee.replace(',', '<br/>')}).appendTo(wrapper);
 
