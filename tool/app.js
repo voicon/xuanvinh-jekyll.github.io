@@ -79,13 +79,6 @@ window.onload=function(){
                 }
 
             });
-            var user = rootRef.getAuth();
-
-            window.userInfo = {
-                'user': user.password,
-                'profile': {}
-            };
-
             return deferred.promise();
         }
 
@@ -246,6 +239,10 @@ window.onload=function(){
             newMessageRef.set({email: user.password.email});
             // We've appended a new message to the message_list location.
             console.log(newMessageRef.toString());
+            window.userInfo = {
+                'user': user.password,
+                'profile': {}
+            };
 
             // Load user info
             userRef = rootRef.child('users').child(user.uid);
@@ -258,9 +255,9 @@ window.onload=function(){
                 // set the fields
                 form.find('#txtName').val(user.name);
                 form.find('#txtType').val(user.type);
+
                 window.userInfo.profile = user;
             });
-
             // Save user's info to Firebase
             form.on('submit', function (e) {
                 e.preventDefault();
