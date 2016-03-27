@@ -170,19 +170,6 @@ window.onload=function(){
                   if (error) {
                     console.log("Login Failed!", error);
                   } else {
-                    /*usersRef.push({ email: userObj.email },
-                     function onComplete() {
-
-                        // show the message if write is successful
-                        showAlert({
-                            title: 'Successfully saved!',
-                            detail: 'You are still logged in',
-                            className: 'alert-success'
-                        });
-
-                    });*/
-
-
                     console.log("Authenticated successfully with payload:", authData);
                   }
                 },{

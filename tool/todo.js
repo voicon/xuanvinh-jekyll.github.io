@@ -52,10 +52,6 @@ data = data || {};
 		options = options || {};
 		options = $.extend({}, defaults, options);
 
-		/*$.each(data, function (index, params) {
-			generateElement(params);
-		});*/
-
 		refreshGrids();
 
 		$.each(codes, function (index,value){
@@ -142,34 +138,17 @@ data = data || {};
 		});
 
 
-		wrapperTitle = $("<div />", {
-			"class" : defaults.todoHeader,
-			"text" : params.title
-		}).appendTo(wrapper);
+		wrapperTitle = $("<div />", { "class" : defaults.todoHeader, "text" : params.title }).appendTo(wrapper);
+		wrapperDate = $("<div />", { "class" : defaults.todoDate, "text" : params.date}).appendTo(wrapper);
+		wrapperDescription = $("<div />", { "class" : defaults.todoDescription, "text" : params.description }).appendTo(wrapper);
 
-		wrapperDate = $("<div />", {
-			"class" : defaults.todoDate,
-			"text" : params.date
-		}).appendTo(wrapper);
+		$("<div />", {"class" : defaults.todoPriority + ' ' + defaults.todoPriority + '-' + params.priority,
+            "text" : prios[params.priority] }).appendTo(wrapper);
 
-		wrapperDescription = $("<div />", {
-			"class" : defaults.todoDescription,
-			"text" : params.description
-		}).appendTo(wrapper);
-
-		$("<div />", {
-			"class" : defaults.todoPriority + ' ' + defaults.todoPriority + '-' + params.priority,
-			"text" : prios[params.priority]
-		}).appendTo(wrapper);
-
-		$("<div />", {
-			"class" : defaults.todoAssignee,
-			"text" : params.assignee
-		}).appendTo(wrapper);
-
+		$("<div />", {"class" : defaults.todoAssignee, "text" : params.assignee}).appendTo(wrapper);
 		$("<div />", { "class" : "", "text" : params.receivedAt }).appendTo(wrapper);
 		$("<div />", { "class" : "", "text" : params.status }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : 0 }).appendTo(wrapper);
+		//$("<div />", { "class" : "", "text" : 0 }).appendTo(wrapper);
 		$("<div />", { "class" : "", "text" : params.category }).appendTo(wrapper);
 		$("<div />", { "class" : "", "text" : params.coordinatorInformation }).appendTo(wrapper);
 		$("<div />", { "class" : "", "text" : params.result }).appendTo(wrapper);
