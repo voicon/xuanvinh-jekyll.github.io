@@ -15,7 +15,7 @@
   <script src="todo.js"></script> 
   <script type="text/javascript">
     $( document ).ready(function() {
-        ['#receivedAt', 'date'].forEach(function(ele) {
+        ['#receivedAt', '#date'].forEach(function(ele) {
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");
         });

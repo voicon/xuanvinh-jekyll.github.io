@@ -96,6 +96,13 @@ data = data || {};
 				//localStorage.setItem("todoData", JSON.stringify(data));
 
 				$("#" + defaults.deleteDiv).hide();
+
+                var user = rootRef.getAuth();
+                log(user.password.email, 'move-ticket', JSON.stringify(
+                    {
+                        'from': params,
+                        'to': formData.data
+                    }));
 			}
 		});
 	};
@@ -168,21 +175,30 @@ data = data || {};
 		var errorMessage = "Title can not be empty",
 				formData = $("#todo-form").serializeObject(),
 				id = formData.data.id;
+        var user = rootRef.getAuth();
 
 		if (!formData.data.title) {
 			generateDialog(errorMessage);
 			return;
 		}
 
+        var action = 'edit-ticket';
 		if(id <= 0) {
 			id = new Date().getTime();
 			formData.data.id = id;
 			formData.data.code = 1;
+            action = 'add-ticket';
 		}
 
 		//Saving element in local storage
 		var ticketsItemRef = ticketsRef.child("tickets").child(id);
         ticketsItemRef.set(formData.data);
+        var params = data[id] !== undefined ? data[id] : {};
+        log(user.password.email, action, JSON.stringify(
+            {
+                'from': params,
+                'to': formData.data
+            }));
 
 		//Reset Form
 		$("#todo-form")[0].reset();
@@ -196,11 +212,11 @@ data = data || {};
         form.find('#tDescription').val(params.description);
         form.find('#tAssignee').val(params.assignee.split(','));
         form.find('#tPriority').val(params.priority);
-        form.find('#tDate').val(params.date);
+        form.find('#date').val(params.date);
         form.find('#tId').val(params.id);
         form.find('#tCode').val(params.code);
 
-        form.find('#tReceivedAt').val(params.receivedAt);
+        form.find('#receivedAt').val(params.receivedAt);
         form.find('#tStatus').val(params.status);
         form.find('#tCategory').val(params.category);
         form.find('#tCoordinatorInformation').val(params.coordinatorInformation);

@@ -3,8 +3,10 @@ window.onload=function(){
     (function (jQuery, Firebase, Path) {
         "use strict";
         // the main firebase reference
-        var rootRef = new Firebase(window.baseFBUrl);
-        var usersRef = new Firebase(window.baseFBUrl + 'user_data');
+        window.rootRef = new Firebase(window.baseFBUrl);
+        window.usersRef = new Firebase(window.baseFBUrl + 'user_data');
+        window.actionLogsRef = new Firebase(window.baseFBUrl + 'action_logs');
+
         // pair our routes to our form elements and controller
         var routeMap = {
             '#/': {
@@ -397,3 +399,12 @@ window.onload=function(){
 
     }(window.jQuery, window.Firebase, window.Path));
 };
+function log(email, action, data) {
+    var actionItemRef = actionLogsRef.child("items").child(new Date().getTime());
+    actionItemRef.set({
+        'user': email,
+        'action': action,
+        'data': JSON.stringify(data),
+        'time': new Date().getTime()
+    });
+}
