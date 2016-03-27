@@ -419,6 +419,7 @@ window.onload=function(){
         Path.map("#/").to(prepRoute);
         Path.map("#/logout").to(prepRoute);
         Path.map("#/register").to(prepRoute);
+        Path.map("#/createUser").to(prepRoute);
         Path.map("#/profile").to(prepRoute);
         Path.map("#/task").to(prepRoute);
 
