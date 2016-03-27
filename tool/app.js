@@ -22,6 +22,10 @@ window.onload=function(){
                 form: 'frmRegister',
                 controller: 'register'
             },
+            '#/createUser': {
+                form: 'frmCreateUser',
+                controller: 'createUser'
+            },
             '#/profile': {
                 form: 'frmProfile',
                 controller: 'profile',
@@ -68,7 +72,6 @@ window.onload=function(){
         // returns a promise
         function authWithPassword(userObj) {
             var deferred = $.Deferred();
-            console.log(userObj);
             rootRef.authWithPassword(userObj, function onAuth(err, user) {
                 if (err) {
                     deferred.reject(err);
@@ -223,6 +226,45 @@ window.onload=function(){
 
         };
 
+        controllers.createUser = function (form) {
+
+            // Form submission for registering
+            form.on('submit', function (e) {
+
+                var userAndPass = $(this).serializeObject();
+                var deferred = $.Deferred();
+                rootRef.createUser(userAndPass, function (err) {
+
+                    if (!err) {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject(err);
+                    }
+
+                });
+                var emailKey = userAndPass.email.replace(/[^a-z0-9 -]/g, ''),
+                    userRef = rootRef.child('users').child(emailKey),
+                    newMessageRef = usersRef.child("emails").child(emailKey);
+                newMessageRef.set({email: userAndPass.email});
+
+                userRef.set({
+                    'name': userAndPass.name,
+                    'type': userAndPass.type
+                }, function onComplete() {
+
+                    // show the message if write is successful
+                    showAlert({
+                        title: 'Successfully saved!',
+                        detail: 'You are still logged in',
+                        className: 'alert-success'
+                    });
+
+                });
+
+            });
+
+        };
+
         controllers.profile = function (form) {
             // Check the current user
             var user = rootRef.getAuth();
@@ -245,7 +287,7 @@ window.onload=function(){
             };
 
             // Load user info
-            userRef = rootRef.child('users').child(user.uid);
+            userRef = rootRef.child('users').child(emailKey);
             userRef.once('value', function (snap) {
                 var user = snap.val();
                 if (!user) {
@@ -262,8 +304,10 @@ window.onload=function(){
                     (window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin')
                 ){
                     $('.userType').hide();
+                    $('#frmCreateUser').hide();
                 } else {
                     $('.userType').show();
+                    $('#frmCreateUser').hide();
                 }
             });
             // Save user's info to Firebase
