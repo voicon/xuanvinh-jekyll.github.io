@@ -120,15 +120,7 @@ data = data || {};
         });
 	}
 
-    function showHide() {
-        if($(this).prev().prev().css('display') == 'none' ) {
-            $(this).prev().prev().show();
-            $(this).text('<< hide info');
-        } else {
-            $(this).prev().prev().hide();
-            $(this).text('>> show info');
-        }
-    };
+
 
 	//Add Task
 	var generateElement = function(params) {
@@ -278,6 +270,14 @@ data = data || {};
 	};
 
 })(todo, data, jQuery);
-
+function showHide() {
+    if($(this).prev().prev().css('display') == 'none' ) {
+        $(this).prev().prev().show();
+        $(this).text('<< hide info');
+    } else {
+        $(this).prev().prev().hide();
+        $(this).text('>> show info');
+    }
+}
 
 
