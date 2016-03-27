@@ -166,7 +166,7 @@ data = data || {};
 		$("<div />", { "class" : "", "html" : '<label>Result</label>: '+result[params.result] }).appendTo(moreInfo);
 		$("<div />", { "class" : "", "html" : '<label>Result Info</label>: ' + params.resultInformation }).appendTo(moreInfo);
 
-		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);">&gt;&gt; Info</a>').appendTo(wrapper);
+		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);">&gt;&gt; show info</a>').appendTo(wrapper);
 	};
 
 	// Deleting Tasks
