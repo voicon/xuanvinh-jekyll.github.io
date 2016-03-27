@@ -257,6 +257,12 @@ window.onload=function(){
                 form.find('#txtType').val(user.type);
 
                 window.userInfo.profile = user;
+
+                if(window.userInfo != undefined &&
+                    (window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin')
+                ){
+                    $('.userType').hide();
+                }
             });
             // Save user's info to Firebase
             form.on('submit', function (e) {
@@ -274,9 +280,6 @@ window.onload=function(){
 
                 });
             });
-            if(window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin') {
-                $('.userType').hide();
-            }
         };
 
         controllers.task = function (form) {
