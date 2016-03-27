@@ -168,7 +168,7 @@ data = data || {};
 		$("<div />", { "class" : "", "html" : '<label>Result</label>: '+result[params.result] }).appendTo(moreInfo);
 		$("<div />", { "class" : "", "html" : '<label>Result Info</label>: ' + params.resultInformation }).appendTo(moreInfo);
 
-		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);" onclick="showHide()">&gt;&gt; show info</a>').appendTo(wrapper);
+		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a class="ticket-more-btn" href="javascript:void(0);" onclick="showHide(this)">&gt;&gt; show info</a>').appendTo(wrapper);
 	};
 
 	// Deleting Tasks
@@ -270,13 +270,13 @@ data = data || {};
 	};
 
 })(todo, data, jQuery);
-function showHide() {
-    if($(this).prev().prev().css('display') == 'none' ) {
-        $(this).prev().prev().show();
-        $(this).text('<< hide info');
+function showHide(me) {
+    if($(me).prev().prev().css('display') == 'none' ) {
+        $(me).prev().prev().show();
+        $(me).text('<< hide info');
     } else {
-        $(this).prev().prev().hide();
-        $(this).text('>> show info');
+        $(me).prev().prev().hide();
+        $(me).text('>> show info');
     }
 }
 
