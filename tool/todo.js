@@ -61,7 +61,9 @@ data = data || {};
 					var element = ui.helper,
 							css_id = element.attr("id"),
 							id = css_id.replace(options.taskId, ""),
-							object = data[id];
+							object = data[id],
+                            fromCode = object.code
+                        ;
 
 					console.log(data[id]);
 
@@ -77,6 +79,13 @@ data = data || {};
 					//localStorage.setItem("todoData", JSON.stringify(data));
 
 					$("#" + defaults.deleteDiv).hide();
+
+                    var user = rootRef.getAuth();
+                    log(user.password.email, 'move-ticket', JSON.stringify(
+                        {
+                            'from': codes[fromCode],
+                            'to': codes[index]
+                        }));
 				}
 			});
 		});
@@ -97,12 +106,7 @@ data = data || {};
 
 				$("#" + defaults.deleteDiv).hide();
 
-                var user = rootRef.getAuth();
-                log(user.password.email, 'move-ticket', JSON.stringify(
-                    {
-                        'from': params,
-                        'to': formData.data
-                    }));
+
 			}
 		});
 	};
