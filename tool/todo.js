@@ -150,22 +150,23 @@ data = data || {};
 
 
 		wrapperTitle = $("<div />", { "class" : defaults.todoHeader, "text" : params.title }).appendTo(wrapper);
-		wrapperDate = $("<div />", { "class" : defaults.todoDate, "text" : params.date}).appendTo(wrapper);
-		wrapperDescription = $("<div />", { "class" : defaults.todoDescription, "text" : params.description }).appendTo(wrapper);
+        $("<div />", { "class" : "", "text" : '<label>Received At</label>: ' + params.receivedAt }).appendTo(wrapper);
+        wrapperDate = $("<div />", { "class" : defaults.todoDate, "text" : '<label>Due date</label>: ' + params.date}).appendTo(wrapper);
+        $("<div />", {"class" : defaults.todoAssignee, "text" : '<label>PIC</label>: ' + params.assignee.replace(',', '<br/>')}).appendTo(wrapper);
 
+        var moreInfo = $("<div />", {"class": 'ticket-more'}).appendTo(wrapper);
+
+        wrapperDescription = $("<div />", { "class" : defaults.todoDescription, "text" : '<label>Description</label>: ' + params.description }).appendTo(moreInfo);
 		$("<div />", {"class" : defaults.todoPriority + ' ' + defaults.todoPriority + '-' + params.priority,
-            "text" : prios[params.priority] }).appendTo(wrapper);
-
-		$("<div />", {"class" : defaults.todoAssignee, "text" : params.assignee}).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.receivedAt }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.status }).appendTo(wrapper);
+            "text" : '<label>Priority</label>: ' + prios[params.priority] }).appendTo(moreInfo);
+		$("<div />", { "class" : "", "text" : '<label>Status</label>: ' + status[params.status] }).appendTo(moreInfo);
 		//$("<div />", { "class" : "", "text" : 0 }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.category }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.coordinatorInformation }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.result }).appendTo(wrapper);
-		$("<div />", { "class" : "", "text" : params.resultInformation }).appendTo(wrapper);
+		$("<div />", { "class" : "", "text" : '<label>Category</label>: ' + categries[params.category] }).appendTo(moreInfo);
+		$("<div />", { "class" : "", "text" : '<label>Coordinator Info</label>: ' + params.coordinatorInformation }).appendTo(moreInfo);
+		$("<div />", { "class" : "", "text" : '<label>Result</label>: '+result[params.result] }).appendTo(moreInfo);
+		$("<div />", { "class" : "", "text" : '<label>Result Info</label>: ' + params.resultInformation }).appendTo(moreInfo);
 
-		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a>').appendTo(wrapper);
+		$('<a href="javascript:void(0);" onclick="todo.edit('+params.id+')">Edit</a> | <a href="javascript:void(0);">&gt;&gt; Info</a>').appendTo(wrapper);
 	};
 
 	// Deleting Tasks
