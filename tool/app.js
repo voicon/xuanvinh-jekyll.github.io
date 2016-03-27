@@ -407,5 +407,32 @@ function log(email, action, data) {
         'data': JSON.stringify(data),
         'time': new Date().getTime()
     });
-    $.notify("star.ico","Notification","User: " + email + "<br/> has just do action: " + action);
+    notifyMe(email, action);
+}
+// request permission on page load
+document.addEventListener('DOMContentLoaded', function () {
+    if (Notification.permission !== "granted")
+        Notification.requestPermission();
+});
+
+function notifyMe(email, action) {
+    if (!Notification) {
+        alert('Desktop notifications not available in your browser. Try Chromium.');
+        return;
+    }
+
+    if (Notification.permission !== "granted")
+        Notification.requestPermission();
+    else {
+        var notification = new Notification('Notification', {
+            icon: 'img/notif.png',
+            body: "User: " + email + "\nhas just do action: " + action,
+        });
+
+        notification.onclick = function () {
+            //window.open("http://stackoverflow.com/a/13328397/1269037");
+        };
+
+    }
+
 }

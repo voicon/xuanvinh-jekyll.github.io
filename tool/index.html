@@ -6,7 +6,6 @@
   <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.0.0/jquery.serialize-object.compiled.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
-    <script type="text/javascript" src="http://adodson.com/jquery-notify.js/jquery-notify.js"></script>
 
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,18 +15,6 @@
   <script src="todo.js"></script> 
   <script type="text/javascript">
     $( document ).ready(function() {
-        var chck = $.notifyCheck();
-        if( chck === 0 ){
-            //alert("Yes enabled")
-        }
-        else if( chck === 1 ){
-            $.notifyRequest();
-            //alert("Browser supports it, but not enabled")
-        }
-        else if( chck === -1 ){
-            alert("Browser does not support notification");
-        }
-
         ['#receivedAt', '#date'].forEach(function(ele) {
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");
