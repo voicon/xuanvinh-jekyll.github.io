@@ -278,7 +278,7 @@ window.onload=function(){
 
             var emailKey = user.password.email.replace(/[^a-z0-9 -]/g, ''),
                 newMessageRef = usersRef.child("emails").child(emailKey);
-            newMessageRef.set({email: user.password.email});
+            newMessageRef.set({email: user.password.email, 'uid': user.uid});
             // We've appended a new message to the message_list location.
             console.log(newMessageRef.toString());
             window.userInfo = {
@@ -287,7 +287,7 @@ window.onload=function(){
             };
 
             // Load user info
-            userRef = rootRef.child('users').child(emailKey);
+            userRef = rootRef.child('users').child(user.uid);
             userRef.once('value', function (snap) {
                 var user = snap.val();
                 if (!user) {
