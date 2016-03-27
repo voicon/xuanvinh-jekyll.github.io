@@ -262,6 +262,8 @@ window.onload=function(){
                     (window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin')
                 ){
                     $('.userType').hide();
+                } else {
+                    $('.userType').show();
                 }
             });
             // Save user's info to Firebase
