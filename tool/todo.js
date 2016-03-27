@@ -118,6 +118,13 @@ data = data || {};
             data[snap.val().id] = params;
             generateElement(params);
         });
+        $('.ticket-more-btn').on( "click", function() {
+            if($(this).prev().prev().css('display') == 'none' ) {
+                $(this).prev().prev().show();
+            } else {
+                $(this).prev().prev().hide();
+            }
+        });
 	}
 
 	//Add Task
