@@ -6,6 +6,7 @@ window.onload=function(){
         window.rootRef = new Firebase(window.baseFBUrl);
         window.usersRef = new Firebase(window.baseFBUrl + 'user_data');
         window.actionLogsRef = new Firebase(window.baseFBUrl + 'action_logs');
+        window.userInfo = {};
 
         // pair our routes to our form elements and controller
         var routeMap = {
@@ -78,6 +79,12 @@ window.onload=function(){
                 }
 
             });
+            var user = rootRef.getAuth();
+
+            window.userInfo = {
+                'user': user.password,
+                'profile': {}
+            };
 
             return deferred.promise();
         }
@@ -250,7 +257,8 @@ window.onload=function(){
 
                 // set the fields
                 form.find('#txtName').val(user.name);
-                form.find('#ddlDino').val(user.favoriteDinosaur);
+                form.find('#txtType').val(user.type);
+                window.userInfo.profile = user;
             });
 
             // Save user's info to Firebase
