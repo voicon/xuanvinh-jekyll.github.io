@@ -19,7 +19,13 @@
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");
         });
-
+        $('.container').delegate("a.ticket-more-btn", "click", function() {
+            if($(this).prev().prev().css('display') == 'none' ) {
+                $(this).prev().prev().show();
+            } else {
+                $(this).prev().prev().hide();
+            }
+        });
     });
   </script>
   <style type="text/css">
