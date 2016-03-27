@@ -19,7 +19,9 @@
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");
         });
-
+        if(window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin') {
+            $('.userType').hide();
+        }
     });
   </script>
   <style type="text/css">

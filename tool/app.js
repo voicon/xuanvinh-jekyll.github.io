@@ -274,7 +274,9 @@ window.onload=function(){
 
                 });
             });
-
+            if(window.userInfo.profile.type == undefined || window.userInfo.profile.type != 'Admin') {
+                $('.userType').hide();
+            }
         };
 
         controllers.task = function (form) {
