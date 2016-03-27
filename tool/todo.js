@@ -194,8 +194,10 @@ data = data || {};
 			id = new Date().getTime();
 			formData.data.id = id;
 			formData.data.code = 1;
+            formData.data.createdBy = user.password.email;
             action = 'add-ticket';
 		}
+        formData.data.updatedBy = user.password.email;
 
 		//Saving element in local storage
 		var ticketsItemRef = ticketsRef.child("tickets").child(id);
