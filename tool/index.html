@@ -15,8 +15,8 @@
   <script src="todo.js"></script> 
   <script type="text/javascript">
     $( document ).ready(function() {
-        $("#datepicker").datepicker();
-        $("#datepicker").datepicker("option", "dateFormat", "dd/mm/yy");
+        $(".datepicker").datepicker();
+        $(".datepicker").datepicker("option", "dateFormat", "dd/mm/yy");
     });
   </script>
   <style type="text/css">
@@ -136,45 +136,45 @@
         <div class="task-list">
           <h3>Add a task</h3>
           
-          <input name="data[title]" id="tTitle" type="text" placeholder="Title" />
-          <textarea name="data[description]" id="tDescription" placeholder="Description"></textarea>
-          <textarea name="data[coordinatorInformation]" id="tCoordinatorInformation" placeholder="Coordinator Information"></textarea>
-          <select name="data[priority]" id="tPriority" placeholder="Priority">
+          <input class="form-control" name="data[title]" id="tTitle" type="text" placeholder="Title" />
+          <textarea name="data[description]" id="tDescription" placeholder="Description" class="form-control" rows="3"></textarea>
+          <textarea name="data[coordinatorInformation]" id="tCoordinatorInformation" class="form-control" rows="3" placeholder="Coordinator Information"></textarea>
+          <select class="form-control" name="data[priority]" id="tPriority" placeholder="Priority">
             <option value="">--Select Priority--</option>
             <option value="1">Minor</option>
             <option value="10">Major</option>
             <option value="20">Blocker</option>
             <option value="30">Critical</option>
           </select>
-          <select name="data[status]" id="tStatus" placeholder="Status">
+          <select class="form-control" name="data[status]" id="tStatus" placeholder="Status">
             <option value="">--Select Status--</option>
             <option value="1">Unoack</option>
             <option value="10">Taking picture</option>
             <option value="20">Machine</option>
           </select>
-          <select name="data[category]" id="tCategory" placeholder="Category">
+          <select class="form-control" name="data[category]" id="tCategory" placeholder="Category">
             <option value="">--Select Category--</option>
             <option value="1">Table</option>
             <option value="10">Chair</option>
             <option value="20">Others</option>
           </select>
-          <select name="data[result]" id="tResult" placeholder="Result">
+          <select class="form-control" name="data[result]" id="tResult" placeholder="Result">
             <option value="">--Select Result--</option>
             <option value="1">PASSED</option>
             <option value="10">FAILED</option>
           </select>
-          <textarea name="data[resultInformation]" id="tResultInformation" placeholder="Result information"></textarea>
-          <select id="tAssignee" name="data[assignee]" multiple placeholder="Assignee">
+          <textarea class="form-control" rows="3" name="data[resultInformation]" id="tResultInformation" placeholder="Result information"></textarea>
+          <select id="tAssignee" name="data[assignee]" class="form-control" multiple placeholder="Assignee">
             <option value="">--Select Assignee--</option>
           </select>
-          <input type="text" id="datepicker" name="data[receivedAt]" placeholder="Receive Date (dd/mm/yy)" />
-          <input type="text" id="datepicker" name="data[date]" placeholder="Due Date (dd/mm/yy)" />
+          <input class="form-control" type="text" class="datepicker" id="receivedAt" name="data[receivedAt]" placeholder="Receive Date (dd/mm/yy)" />
+          <input class="form-control" type="text" class="datepicker" id="date" name="data[date]" placeholder="Due Date (dd/mm/yy)" />
 
           <input type="hidden" id="tId" name="data[id]" value="0" />
           <input type="hidden" id="tCode" name="data[code]" value="1" />
           <input type="button" class="btn btn-primary" value="Add/Update task" onclick="todo.add();" />
           
-          <input type="button" class="btn btn-primary" value="Clear all" onclick="todo.clear();"/>
+          <input type="button" class="btn btn-warning" value="Clear all" onclick="todo.clear();"/>
           <ul id="contacts" class="list-group">
           <!-- Conatct Object li.list-group-item.contact will be added here by js -->
         </ul>
