@@ -164,7 +164,7 @@ data = data || {};
 
 	// Form
 	todo.add = function() {
-        $('tAssigneeHidden').val($('tAssignee').val().join(','));
+        $('#tAssigneeHidden').val($('#tAssignee').val().join(','));
 		var errorMessage = "Title can not be empty",
 				formData = $("#todo-form").serializeObject(),
 				id = formData.data.id;
