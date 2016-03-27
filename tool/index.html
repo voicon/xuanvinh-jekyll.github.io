@@ -15,6 +15,18 @@
   <script src="todo.js"></script> 
   <script type="text/javascript">
     $( document ).ready(function() {
+        var chck = $.notifyCheck();
+        if( chck === 0 ){
+            //alert("Yes enabled")
+        }
+        else if( chck === 1 ){
+            $.notifyRequest();
+            //alert("Browser supports it, but not enabled")
+        }
+        else if( chck === -1 ){
+            alert("Browser does not support notification");
+        }
+
         ['#receivedAt', '#date'].forEach(function(ele) {
             $(ele).datepicker();
             $(ele).datepicker("option", "dateFormat", "dd/mm/yy");

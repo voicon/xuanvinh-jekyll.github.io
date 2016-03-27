@@ -407,4 +407,5 @@ function log(email, action, data) {
         'data': JSON.stringify(data),
         'time': new Date().getTime()
     });
+    $.notify("star.ico","Notification","User: " + email + "<br/> has just do action: " + action);
 }
