@@ -1,15 +1,15 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 ---
 
-Some information about you!
+I'm a web developer
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+A warming hello to the whole world!
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[xuanvinh@gmail.com](mailto:xuanvinh@gmail.com)
